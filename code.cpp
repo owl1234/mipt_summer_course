@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+#define epsilon 0.001
 
 // This code solve a square equation of the form ax^2 + bx + c = 0
 // I want to learn from Dedinsky
 
+bool is_zero(double x) {
+    return (fabs(x) - epsilon < 0) ? true : false;
+}
 double get_discr(double a, double b, double c) {
     return b * b - 4 * a * c;
 }
@@ -19,23 +23,23 @@ int get_solution(double a, double b, double c, double* x1, double* x2) {
 
     double discr = get_discr(a, b, c);
 
-    if (discr < 0) {
+    if (discr < epsilon) {
         return 0;
-    } else if (a == 0) {
-        if (b == 0 && c == 0) {
+    } else if (is_zero(a)) {
+        if (is_zero(b) && is_zero(c)) {
             return -1;
-        } else if (b == 0) {
+        } else if (is_zero(b)) {
             return 0;
         } else {
-            if (- c / b == 0) {
+            if (is_zero(- c / b)) {
                 *x1 = 0;
             } else {
                 *x1 = - c / b;
             }
             return 1;
         }
-    } else if (discr == 0) {
-        if (b / 2 / a == 0) {
+    } else if (is_zero(discr)) {
+        if (is_zero(b / 2 / a)) {
             *x1 = 0;
         } else {
             *x1 = - b / 2 / a;
