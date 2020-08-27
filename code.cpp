@@ -108,7 +108,6 @@ int main ()
 
         default:
             printf ("main(): ERROR: count_solves = %d\n", count_solves);
-
     }
 
     return 0;
