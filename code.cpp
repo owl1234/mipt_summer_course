@@ -40,14 +40,31 @@ int get_solve (double a, double b, double c, double* x1, double* x2)
 
         else
         {
-            *x1 = - c / b;
+            if (- c / b == 0)
+            {
+                *x1 = 0;
+            }
+
+            else
+            {
+                *x1 = - c / b;
+            }
             return 1;
         }
     }
 
     else if (discr == 0)
     {
-        *x1 = - b / 2 / a;
+        if (b / 2 / a == 0)
+        {
+            *x1 = 0;
+        }
+
+        else
+        {
+            *x1 = - b / 2 / a;
+        }
+
         return 1;
     }
 
