@@ -11,9 +11,9 @@ double get_discr (double a, double b, double c)
 }
 int get_solve (double a, double b, double c, double* x1, double* x2)
 {
-	assert (isfinite (a));
-	assert (isfinite (b));
-	assert (isfinite (c));
+    assert (isfinite (a));
+    assert (isfinite (b));
+    assert (isfinite (c));
 
     assert (x1 != NULL);
     assert (x2 != NULL);
