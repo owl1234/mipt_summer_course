@@ -1,21 +1,27 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
-#define epsilon 0.001
 
 // This code solve a square equation of the form ax^2 + bx + c = 0
 // I want to learn from Dedinsky
 
+const double epsilon = 1e-7;
+
 bool is_zero(double x) {
+
     return (fabs(x) - epsilon < 0) ? true : false;
 }
+
 double get_discr(double a, double b, double c) {
+
     return b * b - 4 * a * c;
 }
+
 int get_solution(double a, double b, double c, double* x1, double* x2) {
-	assert(isfinite(a));
-	assert(isfinite(b));
-	assert(isfinite(c));
+
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(isfinite(c));
 
     assert(x1 != NULL);
     assert(x2 != NULL);
@@ -53,7 +59,9 @@ int get_solution(double a, double b, double c, double* x1, double* x2) {
     }
 
 }
+
 int main () {
+
     printf("This code solves the square equation\n");
 
     double a = 0, b = 0, c = 0;
