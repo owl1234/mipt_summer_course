@@ -68,8 +68,7 @@ int get_solution(double a, double b, double c, double* x1, double* x2);
 *   @return Nothing
 */
 
-void test_square_eq_solver(double a, double b, double c, double right_answer1,
-                       double right_answer2, double* x1, double* x2, int* number_of_test);
+
 
 /**
 *   \brief This function contains a set of tests and starts testing function get_solution()
