@@ -8,21 +8,22 @@
 #include <math.h>
 #include <assert.h>
 
+
 // This code solve a square equation of the form ax^2 + bx + c = 0
 // I want to learn from Dedinsky
 
 /**
- * A necessary constant for its convenient use
+ * \brief A necessary constant for its convenient use
  */
 
 const double epsilon = 1e-7;
 
 /**
-    This function compares a number with 0
-
-    @param x The number that you want to compare
-
-    @return True or False (equivalent to 0 or not)
+*   \brief This function compares a number with 0
+*
+*   @param x The number that you want to compare
+*
+*   @return True or False (equivalent to 0 or not)
 */
 
 bool is_zero(double x) {
@@ -31,12 +32,12 @@ bool is_zero(double x) {
 }
 
 /**
-    This function calculates discriminant of the
-    square equation
-
-    @param a,b,c Coefficients of the square equation
-
-    @return Discriminant your square equation
+*   \brief This function calculates discriminant of the
+*   square equation
+*
+*   @param a,b,c Coefficients of the square equation
+*
+*   @return Discriminant your square equation
 */
 
 double get_discr(double a, double b, double c) {
@@ -45,17 +46,17 @@ double get_discr(double a, double b, double c) {
 }
 
 /**
-    This function calculates solutions of the
-    square equation
-
-    @param a,b,c Coefficients of the square equation
-    @param x1,x2 Variables that solutions are written to.
-
-    @return Number of solutions.
-    If the discriminant is less than 0, the solutions not written to a variables.
-    If the discriminant is 0, the solution is written to a variable x1.
-    If the discriminant is greater than 0, the solution is written to a
-    variables x1 and x2
+*   \brief This function calculates solutions of the
+*   square equation
+*
+*   @param a,b,c Coefficients of the square equation
+*   @param x1,x2 Pointers to variables that solutions are written to.
+*
+*   @return Number of solutions.
+*   If the discriminant is less than 0, the solutions not written to a variables.
+*   If the discriminant is 0, the solution is written to a variable x1.
+*   If the discriminant is greater than 0, the solution is written to a
+*   variables x1 and x2
 */
 
 int get_solution(double a, double b, double c, double* x1, double* x2) {
@@ -138,3 +139,6 @@ int main () {
 
     return 0;
 }
+/**
+*   @todo Testing
+*/
