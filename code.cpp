@@ -4,6 +4,7 @@
  * @version 1.0 *
  */
 
+#include "TXLib.h"
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
@@ -26,10 +27,7 @@ const double epsilon = 1e-7;
 *   @return True or False (equivalent to 0 or not)
 */
 
-bool is_zero(double x) {
-
-    return (fabs(x) - epsilon < 0) ? true : false;
-}
+bool is_zero(double x);
 
 /**
 *   \brief This function calculates discriminant of the
@@ -40,10 +38,7 @@ bool is_zero(double x) {
 *   @return Discriminant your square equation
 */
 
-double get_discr(double a, double b, double c) {
-
-    return b * b - 4 * a * c;
-}
+double get_discr(double a, double b, double c);
 
 /**
 *   \brief This function calculates solutions of the
@@ -59,11 +54,70 @@ double get_discr(double a, double b, double c) {
 *   variables x1 and x2
 */
 
+int get_solution(double a, double b, double c, double* x1, double* x2);
+
+void test_get_solution(double a, double b, double c, double right_answer1,
+                       double right_answer2, double* x1, double* x2, int* number_of_test);
+
+void launch(double* x1, double* x2);
+
+int main () {
+    double x1 = 0, x2 = 0;
+
+    launch(&x1, &x2);
+
+    return 0;
+
+    printf("This code solves the square equation\n");
+
+    double a = 0, b = 0, c = 0;
+
+
+    printf("Enter the coefficients:\n");
+    scanf("%lg %lg %lg", &a, &b, &c);
+
+    int count_solutions = get_solution(a, b, c, &x1, &x2);
+
+    switch (count_solutions) {
+        case 0:
+            printf("No roots\n");
+            break;
+
+        case 1:
+            printf("x = %lg\n", x1);
+            break;
+
+        case 2:
+            printf("x1 = %lg\nx2 = %lg\n", x1, x2);
+            break;
+
+        case -1:
+            printf("Any number\n");
+            break;
+
+        default:
+            printf("main(): ERROR: count_solutions = %d\n", count_solutions);
+
+    }
+
+    return 0;
+}
+
+bool is_zero(double x) {
+
+    return (fabs(x) - epsilon < 0) ? true : false;
+}
+
+double get_discr(double a, double b, double c) {
+
+    return b * b - 4 * a * c;
+}
+
 int get_solution(double a, double b, double c, double* x1, double* x2) {
 
-    assert(isfinite(a));
-    assert(isfinite(b));
-    assert(isfinite(c));
+//    assert(isfinite(a));
+//    assert(isfinite(b));
+//    assert(isfinite(c));
 
     assert(x1 != NULL);
     assert(x2 != NULL);
@@ -102,43 +156,62 @@ int get_solution(double a, double b, double c, double* x1, double* x2) {
 
 }
 
+void test_get_solution(double a, double b, double c, double right_answer1,
+                       double right_answer2, double* x1, double* x2, int* number_of_test) {
+    *x1 = 0;
+    *x2 = 0;
 
-int main () {
+    double result = get_solution(a, b, c, x1, x2);
 
-    printf("This code solves the square equation\n");
-
-    double a = 0, b = 0, c = 0;
-    double x1 = 0, x2 = 0;
-
-    printf("Enter the coefficients:\n");
-    scanf("%lg %lg %lg", &a, &b, &c);
-
-    int count_solutions = get_solution(a, b, c, &x1, &x2);
-
-    switch (count_solutions) {
-        case 0:
-            printf("No roots\n");
-            break;
-
-        case 1:
-            printf("x = %lg\n", x1);
-            break;
-
-        case 2:
-            printf("x1 = %lg\nx2 = %lg\n", x1, x2);
-            break;
-
-        case -1:
-            printf("Any number\n");
-            break;
-
-        default:
-            printf("main(): ERROR: count_solutions = %d\n", count_solutions);
-
+    if (result == 1) {
+        if (*x1 == right_answer1) {
+            $o;
+            printf("Test #%d OK\n", *number_of_test);
+        } else {
+            $e;
+            printf("Test #%d BAD: get_solution(%lg, %lg, %lg) == %lg, should be %lg\n", *number_of_test, a, b, c, *x1, right_answer1);
+        }
+    } else if (result == 2) {
+        if (*x1 == right_answer1 && *x2 == right_answer2 || *x1 == right_answer2 && *x2 == right_answer1) {
+            $o;
+            printf("Test #%d OK\n", *number_of_test);
+        } else {
+            $e;
+            printf("Test #%d BAD: get_solution(%lg, %lg, %lg) == %lg, %lg, should be %lg, %lg\n", *number_of_test, a, b, c, *x1, *x2, right_answer1, right_answer2);
+        }
+    } else if (result == 0) {
+        if (*x1 == *x2 && *x1 == 0) {
+            $o;
+            printf("Test #%d OK\n", *number_of_test);
+        } else {
+            $e;
+            printf("Test #%d BAD: get_solution(%lg, %lg, %lg) == %lg, but there are no roots\n", *number_of_test, a, b, c, *x1);
+        }
+    } else if (result == -1) {
+        if (*x1 == *x2 && *x1 == 0) {
+            $o;
+            printf("Test #%d OK\n", *number_of_test);
+        } else {
+            $e;
+            printf("Test #%d BAD: get_solution(%lg, %lg, %lg) == %lg, but the roots are any numbers\n", *number_of_test, a, b, c, result);
+        }
+    } else {
+        $f;
+        printf("Test #%d IS VERY BAD: it is very strange number of solutions: %d\n", *number_of_test, *x1);
     }
 
-    return 0;
+
+    (*number_of_test)++;
+
+    $d;
 }
-/**
-*   @todo Testing
-*/
+
+void launch(double* x1, double* x2) {
+    int number_of_test = 1;
+    test_get_solution(1, 2, 1, -1, 0, x1, x2, &number_of_test);
+    test_get_solution(1, -2, 1, 1, 0, x1, x2, &number_of_test);
+    test_get_solution(1, -3, 2, 1, 2, x1, x2, &number_of_test);
+    test_get_solution(5, 1, 5, 0, 0, x1, x2, &number_of_test);
+    test_get_solution(0, 0, 0, 0, 0, x1, x2, &number_of_test);
+    test_get_solution(0, 0, 9, 0, 0, x1, x2, &number_of_test);
+}
