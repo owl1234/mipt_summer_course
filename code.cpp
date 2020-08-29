@@ -45,7 +45,7 @@ double get_discr(double a, double b, double c);
 *   square equation
 *
 *   @param a,b,c Coefficients of the square equation
-*   @param x1,x2 Pointers to variables that solutions are written to.
+*   @param x1,x2 Pointers to variables that solutions are written to
 *
 *   @return Number of solutions.
 *   If the discriminant is less than 0, the solutions not written to a variables.
@@ -56,8 +56,28 @@ double get_discr(double a, double b, double c);
 
 int get_solution(double a, double b, double c, double* x1, double* x2);
 
+/**
+*   \brief This function tests function get_solution()
+*
+*   @param a,b,c Coefficients of the square equation
+*   @param right_answer1,right_answer2 Correct roots of the equation
+*   @param x1,x2 Pointers to variables that solutions are written to
+*   @param number_of_test Test number
+*
+*   @return Nothing
+*/
+
 void test_get_solution(double a, double b, double c, double right_answer1,
                        double right_answer2, double* x1, double* x2, int* number_of_test);
+
+/**
+*   \brief This function contains a set of tests and starts testing function get_solution()
+*
+*   @param x1,x2 Pointers to variables that solutions are written to
+*   @param number_of_test Test number
+*
+*   @return Nothing
+*/
 
 void launch(double* x1, double* x2);
 
