@@ -1,3 +1,4 @@
+#include "TXLib.h"
 #include "code.h"
 
 void test_square_eq_solver(double a, double b, double c, double right_answer1,
