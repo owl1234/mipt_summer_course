@@ -15,14 +15,6 @@
 // This code solve a square equation of the form ax^2 + bx + c = 0
 // I want to learn from Dedinsky
 
-bool is_zero(double x);
-
-double get_discr(double a, double b, double c);
-
-int get_solution(double a, double b, double c, double* x1, double* x2);
-
-void launch(double* x1, double* x2);
-
 int main () {
     double x1 = 0, x2 = 0;
 
@@ -127,4 +119,5 @@ void launch(double* x1, double* x2) {
     test_square_eq_solver(5, 1, 5, 0, 0, x1, x2, &number_of_test);
     test_square_eq_solver(0, 0, 0, 0, 0, x1, x2, &number_of_test);
     test_square_eq_solver(0, 0, 9, 0, 0, x1, x2, &number_of_test);
+    test_square_eq_solver(0, 8, 0, 0, 0, x1, x2, &number_of_test);
 }
