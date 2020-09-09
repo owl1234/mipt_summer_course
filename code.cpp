@@ -26,7 +26,6 @@ int main () {
 
     double a = 0, b = 0, c = 0;
 
-
     printf("Enter the coefficients:\n");
     scanf("%lg %lg %lg", &a, &b, &c);
 
@@ -109,7 +108,6 @@ int get_solution(double a, double b, double c, double* x1, double* x2) {
     }
 
 }
-
 
 void launch(double* x1, double* x2) {
     int number_of_test = 1;

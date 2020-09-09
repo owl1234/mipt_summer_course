@@ -46,7 +46,6 @@ void test_square_eq_solver(double a, double b, double c, double right_answer1,
         printf("Test #%d IS VERY BAD: it is very strange number of solutions: %lg\n", *number_of_test, *x1);
     }
 
-
     (*number_of_test)++;
 
     // $d;

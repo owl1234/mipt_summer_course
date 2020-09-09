@@ -55,6 +55,12 @@ int get_solution(double a, double b, double c, double* x1, double* x2);
 
 void launch(double* x1, double* x2);
 
+/**
+*   \brief This is the main function in the program
+*
+*   @return 0, if all is well
+*/
+
 int main();
 
 #endif
